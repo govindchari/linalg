@@ -1,5 +1,6 @@
 #pragma once
-#include <vector>
+#include <stdio.h>
+#include <initializer_list>
 
 namespace linalg
 {
@@ -37,4 +38,32 @@ namespace linalg
             data = rhs;
         }
     };
+
+    //Matrix typedefs and aliases
+    template <size_t R, size_t C>
+    using Matrixf = Matrix<float, R, C>;
+    typedef Matrixf<2,2> Matrix2x2f;
+    typedef Matrixf<3,3> Matrix3x3f;
+    typedef Matrixf<2,3> Matrix2x3f;
+    typedef Matrixf<3,2> Matrix3x2f;
+
+    template <size_t R, size_t C>
+    using Matrixd = Matrix<double, R, C>;
+    typedef Matrixd<2,2> Matrix2x2d;
+    typedef Matrixd<3,3> Matrix3x3d;
+    typedef Matrixd<2,3> Matrix2x3d;
+    typedef Matrixd<3,2> Matrix3x2d;
+
+    //Vector typedefs and aliases
+    template <size_t R>
+    using Vectorf = Matrix<float,R,1>
+    typedef Vectorf<2> Vector2f;
+    typedef Vectorf<3> Vector3f;
+    typedef Vectorf<4> Vector4f;
+
+    template <size_t R>
+    using Vectorf = Matrix<double,R,1>
+    typedef Vectord<2> Vector2d;
+    typedef Vectord<3> Vector3d;
+    typedef Vectord<4> Vector4d;
 }
