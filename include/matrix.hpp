@@ -9,10 +9,17 @@ namespace linalg
     private:
         size_t num_rows = R;
         size_t num_cols = C;
-        T data[R * C];
+        T data[R*C] = {};
 
     public:
-        Matrix(){};
+        Matrix(std::initializer_list<T> l)
+        {
+            int count = 0;
+            for (auto i : l){
+                data[count] = i;
+                ++count;
+            }
+        };
         size_t rows()
         {
             return num_rows;
@@ -24,6 +31,9 @@ namespace linalg
         T operator()(int i, int j)
         {
             return data[i * cols() + j];
+        }
+        void operator=(T rhs[R*C]){
+            data = rhs;
         }
     };
 }
