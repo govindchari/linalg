@@ -20,6 +20,7 @@ namespace linalg
                 ++count;
             }
         };
+        Matrix() = default;
         size_t rows()
         {
             return num_rows;

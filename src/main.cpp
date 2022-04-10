@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main(){
-    linalg::Matrix<float, 2, 3> m = {1,2,3,4,5,6};
+    linalg::Matrix<float, 2, 3> m;
     
     std::cout << m.rows() << std::endl;
     std::cout << m.cols() << std::endl;
