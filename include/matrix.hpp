@@ -7,36 +7,44 @@ namespace linalg
     template <typename T, size_t R, size_t C>
     class Matrix
     {
-    private:
-        size_t num_rows = R;
-        size_t num_cols = C;
-        T data[R*C] = {};
+        static_assert(!(R==0 || C==0), "Dimension cannot be zero");
+        private:
+            size_t num_rows = R;
+            size_t num_cols = C;
+            T data[R*C] = {};
 
-    public:
-        Matrix(std::initializer_list<T> l)
-        {
-            int count = 0;
-            for (auto i : l){
-                data[count] = i;
-                ++count;
+        public:
+            Matrix(std::initializer_list<T> l)
+            {
+                int count = 0;
+                for (auto i : l){
+                    data[count] = i;
+                    ++count;
+                }
+            };
+            Matrix() = default;
+            size_t rows()
+            {
+                return num_rows;
             }
-        };
-        Matrix() = default;
-        size_t rows()
-        {
-            return num_rows;
-        }
-        size_t cols()
-        {
-            return num_cols;
-        }
-        T operator()(int i, int j)
-        {
-            return data[i * cols() + j];
-        }
-        void operator=(T rhs[R*C]){
-            data = rhs;
-        }
+            size_t cols()
+            {
+                return num_cols;
+            }
+            T operator()(int i, int j)
+            {
+                
+                static_assert(!(R == 1 || C == 1), "Invalid element access for a vector");
+                return data[i * cols() + j];
+            }
+            T operator()(int i)
+            {
+                static_assert((R == 1 || C == 1), "Invalid element access for a matrix");
+                return data[i];
+            }
+            void operator=(T rhs[R*C]){
+                data = rhs;
+            }
     };
 
     //Matrix typedefs and aliases
@@ -56,13 +64,13 @@ namespace linalg
 
     //Vector typedefs and aliases
     template <size_t R>
-    using Vectorf = Matrix<float,R,1>
+    using Vectorf = Matrix<float,R,1>;
     typedef Vectorf<2> Vector2f;
     typedef Vectorf<3> Vector3f;
     typedef Vectorf<4> Vector4f;
 
     template <size_t R>
-    using Vectorf = Matrix<double,R,1>
+    using Vectord = Matrix<double,R,1>;
     typedef Vectord<2> Vector2d;
     typedef Vectord<3> Vector3d;
     typedef Vectord<4> Vector4d;
