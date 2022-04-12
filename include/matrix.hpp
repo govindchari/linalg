@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <initializer_list>
+#include<iostream>
 
 namespace linalg
 {
@@ -9,8 +10,8 @@ namespace linalg
     {
         static_assert(!(R==0 || C==0), "Dimension cannot be zero");
         private:
-            size_t num_rows = R;
-            size_t num_cols = C;
+            static constexpr size_t num_rows = R;
+            static constexpr size_t num_cols = C;
             T data[R*C] = {};
 
         public:
@@ -31,7 +32,7 @@ namespace linalg
             {
                 return num_cols;
             }
-            T operator()(int i, int j)
+            T operator()(const int i, const int j)
             {
                 
                 static_assert(!(R == 1 || C == 1), "Invalid element access for a vector");
@@ -43,8 +44,25 @@ namespace linalg
                 return data[i];
             }
             void operator=(T rhs[R*C]){
-                data = rhs;
+                this->data = rhs;
             }
+            Matrix<T,R,C> operator+(const Matrix<T,R,C> &M2)
+            {
+                Matrix<T,R,C> result;
+                for (int i=0;i<R*C;i++){
+                    result.data[i] = this->data[i] + M2.data[i];
+                }
+                return result;
+            }
+            Matrix<T,R,C> operator-(const Matrix<T,R,C> &M2)
+            {
+                Matrix<T,R,C> result;
+                for (int i=0;i<R*C;i++){
+                    result.data[i] = this->data[i] - M2.data[i];
+                }
+                return result;
+            }
+            
     };
 
     //Matrix typedefs and aliases
