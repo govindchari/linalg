@@ -1,7 +1,6 @@
 #pragma once
 #include <stdio.h>
 #include <initializer_list>
-#include<iostream>
 
 namespace linalg
 {
@@ -34,7 +33,6 @@ namespace linalg
             }
             T operator()(const int i, const int j)
             {
-                
                 static_assert(!(R == 1 || C == 1), "Invalid element access for a vector");
                 return data[i * cols() + j];
             }

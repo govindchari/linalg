@@ -2,17 +2,27 @@
 #include <iostream>
 
 int main(){
-    linalg::Matrix2x2f m1 = {1,2,3,4};
-    linalg::Matrix2x2f m2 = {2,4,6,8};
+    /*
+    int N = 1000;
+    linalg::Matrix<int, N, N> m1;
+    linalg::Matrix<int, N, N> m2;
 
-    m2 = m1;
+    for (int i=0;i<N;i++){
+        for (int j=0;j<N;j++){
+            
+        }
+    }
+    */
 
-    auto m3 = m1+m2;
+    linalg::Matrix<int, 2, 2> m1;
+    m1(0,0) = 1;
 
+    /*
     std::cout << m3.rows() << std::endl;
     std::cout << m3.cols() << std::endl;
     std::cout << m3(0,0) << std::endl;
     std::cout << m3(0,1) << std::endl;
     std::cout << m3(1,0) << std::endl;
     std::cout << m3(1,1) << std::endl;
+    */
 }
