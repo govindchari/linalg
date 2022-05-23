@@ -14,8 +14,9 @@ int main(){
     }
     */
 
-    linalg::Matrix<int, 2, 2> m1;
-    m1(0,0) = 1;
+    linalg::Matrix<int, 2, 2> m1 = {1,2,3,4};
+    std::cout << m1 << std::endl;
+    //m1(0,0) = 1;
 
     /*
     std::cout << m3.rows() << std::endl;
