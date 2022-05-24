@@ -66,9 +66,16 @@ namespace linalg
             }
             return result;
         }
-        std::ostream &operator<<(std::ostream &os, const Matrix<T, R, C> &m)
+        friend std::ostream &operator<<(std::ostream &os, Matrix &m)
         {
-            os << m(0, 0);
+            for (int i = 0; i < m.rows(); i++)
+            {
+                for (int j = 0; j < m.cols(); j++)
+                {
+                    os << m.data[i * m.cols() + j] << "\t";
+                }
+                os << "\n";
+            }
             return os;
         }
     };
